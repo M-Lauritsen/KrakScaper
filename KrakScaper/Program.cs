@@ -33,28 +33,34 @@ namespace KrakScaper
             var HtmlDocument = new HtmlDocument();
             HtmlDocument.LoadHtml(html);
 
+            // a list of every result
             var NameList = HtmlDocument.DocumentNode.Descendants("ul")
                 .Where(node => node.GetAttributeValue("class", "")
                 .Equals("ResultList")).ToList();
 
+            // Single person added to list
             var NameListPeople = NameList[0].Descendants("div")
                 .Where(node => node.GetAttributeValue("class", "")
                 .Equals("PersonResultListItem")).ToList();
 
             
+            // for each person in our NameListPeople
             foreach (var person in NameListPeople)
             {
+                // Name
                 Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
 
+
+                // Address
                 Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
 
+                // Phone Number.. using a try catch 
                 try
-                {
-                    
+                {    
                     Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("role", "")
                     .Equals("button")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t').Substring(0,11));
