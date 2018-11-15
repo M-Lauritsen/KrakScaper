@@ -47,26 +47,53 @@ namespace KrakScaper
             // for each person in our NameListPeople
             foreach (var person in NameListPeople)
             {
-                // Name
-                Console.WriteLine(person.Descendants("div")
-                    .Where(node => node.GetAttributeValue("class", "")
-                    .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+                //// Name
+                //try
+                //{
+                //    Console.WriteLine(person.Descendants("div")
+                //    .Where(node => node.GetAttributeValue("class", "")
+                //    .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+                //}
+                //catch (Exception)
+                //{
+                //    Console.WriteLine("Skjult");
+                //    continue;
+                //}
+                
 
 
-                // Address
-                Console.WriteLine(person.Descendants("div")
-                    .Where(node => node.GetAttributeValue("class", "")
-                    .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+                //// Address
+                //try
+                //{
+                //    Console.WriteLine(person.Descendants("div")
+                //    .Where(node => node.GetAttributeValue("class", "")
+                //    .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+                //}
+                //catch (Exception)
+                //{
+                //    Console.WriteLine("Skjult");
+                //    continue;
+                //}
+                
 
                 // Phone Number.. using a try catch 
                 try
-                {    
+                {
+                    Console.WriteLine(person.Descendants("div")
+                    .Where(node => node.GetAttributeValue("class", "")
+                    .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+
+                    Console.WriteLine(person.Descendants("div")
+                    .Where(node => node.GetAttributeValue("class", "")
+                    .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
+
                     Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("role", "")
                     .Equals("button")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t').Substring(0,11));
                 }
                 catch (Exception)
                 {
+                    Console.WriteLine("----Skjult----");
                     Console.WriteLine();
                     continue;
                 }
