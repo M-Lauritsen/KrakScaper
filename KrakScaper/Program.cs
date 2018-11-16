@@ -47,46 +47,19 @@ namespace KrakScaper
             // for each person in our NameListPeople
             foreach (var person in NameListPeople)
             {
-                //// Name
-                //try
-                //{
-                //    Console.WriteLine(person.Descendants("div")
-                //    .Where(node => node.GetAttributeValue("class", "")
-                //    .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
-                //}
-                //catch (Exception)
-                //{
-                //    Console.WriteLine("Skjult");
-                //    continue;
-                //}
-                
-
-
-                //// Address
-                //try
-                //{
-                //    Console.WriteLine(person.Descendants("div")
-                //    .Where(node => node.GetAttributeValue("class", "")
-                //    .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
-                //}
-                //catch (Exception)
-                //{
-                //    Console.WriteLine("Skjult");
-                //    continue;
-                //}
-                
-
-                // Phone Number.. using a try catch 
                 try
                 {
+                    //Names
                     Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("personName")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
 
+                    // Address
                     Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("address")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t'));
 
+                    // PhoneNumber
                     Console.WriteLine(person.Descendants("div")
                     .Where(node => node.GetAttributeValue("role", "")
                     .Equals("button")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t').Substring(0,11));
