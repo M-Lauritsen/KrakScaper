@@ -11,10 +11,14 @@ namespace KrakScaper
     class Program
     {
         static void Main(string[] args)
-        {
+        {           
+            start:
+            Console.Clear();
             Console.WriteLine("Indtast: Navn, Nummer eller adresse");
             GetHTMLAsync();
             Console.ReadKey();
+            goto start;
+            
         }
 
         private static async void GetHTMLAsync()
@@ -82,10 +86,6 @@ namespace KrakScaper
             }
             
             
-            
-
-
-
         }
     }
 }
