@@ -28,6 +28,8 @@ namespace KrakScaper
             var url = "https://www.krak.dk/" + q +"/personer";
             Console.Clear();
 
+            Console.WriteLine($"Søger efter {q}....\n");
+            
 
             try
             {
@@ -49,6 +51,8 @@ namespace KrakScaper
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("PersonResultListItem")).ToList();
 
+                int count = 0;
+
                 // for each person in our NameListPeople
                 foreach (var person in NameListPeople)
                 {
@@ -68,6 +72,8 @@ namespace KrakScaper
                         Console.WriteLine(person.Descendants("div")
                         .Where(node => node.GetAttributeValue("role", "")
                         .Equals("button")).FirstOrDefault().InnerText.Trim('\r', '\n', '\t').Substring(0, 11));
+
+                        
                     }
                     catch (Exception)
                     {
@@ -75,9 +81,10 @@ namespace KrakScaper
                         Console.WriteLine();
                         continue;
                     }
-
+                    count++;
                     Console.WriteLine();
                 }
+                Console.WriteLine($"Der blev fundet {count} ialt");
             }
             catch (Exception)
             {
